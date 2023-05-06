@@ -19,6 +19,9 @@ app.use(
 );
 app.use(express.json());
 
+// public path
+app.use(express.static("public"));
+
 // session middleware
 app.use(
   session({
@@ -42,9 +45,6 @@ app.use(
 // flash messages
 app.use(flash());
 
-// public path
-app.use(express.static("public"));
-
 // set session to res
 app.use((req, res, next) => {
   if (req.session.userid) {
@@ -54,8 +54,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Models
+const Tought = require("./models/Tought");
+const User = require("./models/User");
+
 conn
-  .sync()
+  .sync() // { force: true }
   .then(() => {
     app.listen(3000);
   })
