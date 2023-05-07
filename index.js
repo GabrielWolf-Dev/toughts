@@ -11,15 +11,15 @@ const conn = require("./db/conn");
 const Tought = require("./models/Tought");
 const User = require("./models/User");
 
-// template engine
-app.engine("handlebars", exphbs.engine());
-app.set("view engine", "handlebars");
+// Import Controller
+const ToughtController = require("./controllers/ToughtController");
 
 // Import Routes
 const toughtsRoutes = require("./routes/toughtsRoutes");
 
-// Import Controller
-const ToughtController = require("./controllers/ToughtController");
+// template engine
+app.engine("handlebars", exphbs.engine());
+app.set("view engine", "handlebars");
 
 // body response
 app.use(
